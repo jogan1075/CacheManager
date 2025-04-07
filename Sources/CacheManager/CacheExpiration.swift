@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CacheExpiration {
+public enum CacheExpiration {
     case never
     case minutes(Double)
     case hours(Double)

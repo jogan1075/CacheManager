@@ -49,7 +49,7 @@ class CacheManager: CacheService {
         }
     }
     
-    func save<T: Codable>(_ object: T, forKey key: String, expiration: CacheExpiration = .never) {
+public    func save<T: Codable>(_ object: T, forKey key: String, expiration: CacheExpiration = .never) {
         do {
             guard !key.isEmpty else { throw CacheError.invalidKey }
             
@@ -79,7 +79,7 @@ class CacheManager: CacheService {
         }
     }
     
-    func get<T: Codable>(forKey key: String) -> T? {
+    public  func get<T: Codable>(forKey key: String) -> T? {
         guard !key.isEmpty else {
             print("Cache error: \(CacheError.invalidKey.localizedDescription)")
             return nil
@@ -131,7 +131,7 @@ class CacheManager: CacheService {
         }
     }
     
-    func removeObject(forKey key: String) {
+    public  func removeObject(forKey key: String) {
         // Remove from memory cache
         memoryCache.removeObject(forKey: key as NSString)
         memoryCacheKeys.remove(key) // Remove from tracking
@@ -139,7 +139,7 @@ class CacheManager: CacheService {
         storage.removeObject(forKey: key)
     }
     
-    func clearCache() {
+    public  func clearCache() {
         // Clear memory cache
         memoryCache.removeAllObjects()
         memoryCacheKeys.removeAll() // Clear tracking
@@ -149,7 +149,7 @@ class CacheManager: CacheService {
         }
     }
     
-    func clearExpiredCache() {
+    public func clearExpiredCache() {
         // Clear expired items from memory cache
         for key in memoryCacheKeys {
             if let wrapper = memoryCache.object(forKey: key as NSString), wrapper.isExpired {
