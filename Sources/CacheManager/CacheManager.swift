@@ -19,12 +19,12 @@ struct CachedObject<T: Codable>: Codable {
     }
 }
 
-class CacheManager: CacheService {
+public class CacheManager: CacheService {
     private let storage = UserDefaults.standard
     private var memoryCache = NSCache<NSString, CacheWrapper>()
     private var memoryCacheKeys = Set<String>() // Track memory cache keys
     
-    init() {
+   public  init() {
         // Configure memory cache
         memoryCache.countLimit = 100 // Maximum number of objects
         memoryCache.totalCostLimit = 50 * 1024 * 1024 // 50MB limit
